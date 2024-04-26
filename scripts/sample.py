@@ -80,7 +80,7 @@ def main():
             if args.text_weight != 0:
                 text_features = clip_model.encode_text(y)
             if args.image_weight != 0:
-                target_img_noised = diffusion.q_sample(kwargs['ref_img'], t, tscale1000=True)
+                target_img_noised = diffusion.q_sample(kwargs['ref_img'], t, tscale1000=True)  # 由ref_img正向生成ref_img_t
                 target_img_features = clip_ft.encode_image_list(target_img_noised, t)
         with th.enable_grad():
             x_in = x.detach().requires_grad_(True)
